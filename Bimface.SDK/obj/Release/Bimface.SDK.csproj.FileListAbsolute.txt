@@ -1,0 +1,17 @@
+D:\Git\sdk\Bimface.CSharp.SDK\Bimface.SDK\bin\Release\Bimface.SDK.dll
+D:\Git\sdk\Bimface.CSharp.SDK\Bimface.SDK\bin\Release\Bimface.SDK.pdb
+D:\Git\sdk\Bimface.CSharp.SDK\Bimface.SDK\bin\Release\Newtonsoft.Json.dll
+D:\Git\sdk\Bimface.CSharp.SDK\Bimface.SDK\obj\Release\Bimface.SDK.csprojResolveAssemblyReference.cache
+D:\Git\sdk\Bimface.CSharp.SDK\Bimface.SDK\obj\Release\Bimface.SDK.Properties.Resources.resources
+D:\Git\sdk\Bimface.CSharp.SDK\Bimface.SDK\obj\Release\Bimface.SDK.csproj.GenerateResource.Cache
+D:\Git\sdk\Bimface.CSharp.SDK\Bimface.SDK\obj\Release\Bimface.SDK.dll
+D:\Git\sdk\Bimface.CSharp.SDK\Bimface.SDK\obj\Release\Bimface.SDK.pdb
+D:\Github\bimface-csharp-sdk\Bimface.SDK\bin\Release\Bimface.SDK.dll
+D:\Github\bimface-csharp-sdk\Bimface.SDK\bin\Release\Bimface.SDK.pdb
+D:\Github\bimface-csharp-sdk\Bimface.SDK\bin\Release\Newtonsoft.Json.dll
+D:\Github\bimface-csharp-sdk\Bimface.SDK\bin\Release\Newtonsoft.Json.xml
+D:\Github\bimface-csharp-sdk\Bimface.SDK\obj\Release\Bimface.SDK.csprojResolveAssemblyReference.cache
+D:\Github\bimface-csharp-sdk\Bimface.SDK\obj\Release\Bimface.SDK.Properties.Resources.resources
+D:\Github\bimface-csharp-sdk\Bimface.SDK\obj\Release\Bimface.SDK.csproj.GenerateResource.Cache
+D:\Github\bimface-csharp-sdk\Bimface.SDK\obj\Release\Bimface.SDK.dll
+D:\Github\bimface-csharp-sdk\Bimface.SDK\obj\Release\Bimface.SDK.pdb
