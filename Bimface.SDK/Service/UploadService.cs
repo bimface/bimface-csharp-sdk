@@ -32,8 +32,8 @@ namespace Bimface.SDK.Service
 
         private void InitializeInstanceFields()
         {
-            UPLOAD_URL = FileHost + "/upload?name={0}&suffix={1}";
-            UPLOAD_BY_URL_URL = FileHost + "/upload?name={0}&suffix={1}&url={2}";
+            UPLOAD_URL = FileHost + "/upload?name={0}";
+            UPLOAD_BY_URL_URL = FileHost + "/upload?name={0}&url={2}";
         }
 
         public virtual FileBean Upload(FileUploadRequest fileUploadRequest)
@@ -47,13 +47,13 @@ namespace Bimface.SDK.Service
             string requestUrl = null;
             if (fileUploadRequest.ByUrl)
             {
-                requestUrl = string.Format(UPLOAD_BY_URL_URL, fileUploadRequest.Name, fileUploadRequest.Suffix,
+                requestUrl = string.Format(UPLOAD_BY_URL_URL, fileUploadRequest.Name,
                     fileUploadRequest.Url);
                 response = ServiceClient.Put(requestUrl, headers);
             }
             else
             {
-                requestUrl = string.Format(UPLOAD_URL, fileUploadRequest.Name, fileUploadRequest.Suffix);
+                requestUrl = string.Format(UPLOAD_URL, fileUploadRequest.Name);
                 //headers.Add(HttpHeaders.CONTENT_LENGTH, fileUploadRequest.ContentLength.ToString());
                 response = ServiceClient.Put(requestUrl, fileUploadRequest.InputStream, fileUploadRequest.ContentLength,
                     headers);
@@ -66,15 +66,15 @@ namespace Bimface.SDK.Service
             AssertUtils.AssertParameterNotNull(fileUploadRequest, "fileUploadRequest");
             if (fileUploadRequest.Url == null)
             {
-                if (fileUploadRequest.ContentLength < 0)
+                if (fileUploadRequest.ContentLength <= 0)
                 {
                     throw new ArgumentException("ParameterLongIsEmpty ContentLength");
                 }
                 AssertUtils.AssertParameterNotNull(fileUploadRequest.InputStream, "inputStream");
             }
-            AssertUtils.CheckFileName(fileUploadRequest.Name);
-            var allSupportedType = SupportFileService.SupportFile;
-            AssertUtils.CheckFileSuffix(allSupportedType, fileUploadRequest.Suffix);
+            FileNameUtils.CheckFileName(fileUploadRequest.Name);
+            SupportFileBean supportFile = SupportFileService.SupportFileBean;
+            FileNameUtils.CheckFileType(supportFile.Types, fileUploadRequest.Name);
         }
     }
 }

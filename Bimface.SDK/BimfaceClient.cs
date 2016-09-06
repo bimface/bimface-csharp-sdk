@@ -122,9 +122,9 @@ namespace Bimface.SDK
         /// <exception cref="BimfaceException">
         ///     <seealso cref="BimfaceException" />
         /// </exception>
-        public virtual IList<string> SupportFile
+        public virtual SupportFileBean SupportFile
         {
-            get { return supportFileService.SupportFile; }
+            get { return supportFileService.SupportFileBean; }
         }
 
         public virtual Credential Credential
@@ -331,53 +331,7 @@ namespace Bimface.SDK
         /// </exception>
         public virtual ShareLinkBean CreateShareLink(string viewId)
         {
-            return shareLinkService.Create(viewId, null);
-        }
-
-        /// <summary>
-        ///     获得预览文件的分享链接
-        /// </summary>
-        /// <param name="viewId"> 预览ID </param>
-        /// <returns>
-        ///     <seealso cref="ShareLinkBean" />
-        /// </returns>
-        /// <exception cref="BimfaceException">
-        ///     <seealso cref="BimfaceException" />
-        /// </exception>
-        public virtual ShareLinkBean GetShareLink(string viewId)
-        {
-            return shareLinkService.Get(viewId);
-        }
-
-        /// <summary>
-        ///     修改分享链接
-        /// </summary>
-        /// <param name="viewId"> 预览ID </param>
-        /// <param name="activeHours"> 从当前算起，分享链接的有效时间，单位：小时; 如果为空，表示该分享链接永久有效 </param>
-        /// <returns>
-        ///     <seealso cref="ShareLinkBean" />
-        /// </returns>
-        /// <exception cref="BimfaceException">
-        ///     <seealso cref="BimfaceException" />
-        /// </exception>
-        public virtual ShareLinkBean UpdateShareLink(string viewId, int? activeHours)
-        {
-            return shareLinkService.Update(viewId, activeHours);
-        }
-
-        /// <summary>
-        ///     修改分享链接有效性为永久有效
-        /// </summary>
-        /// <param name="viewId"> 预览ID </param>
-        /// <returns>
-        ///     <seealso cref="ShareLinkBean" />
-        /// </returns>
-        /// <exception cref="BimfaceException">
-        ///     <seealso cref="BimfaceException" />
-        /// </exception>
-        public virtual ShareLinkBean UpdateShareLink(string viewId)
-        {
-            return shareLinkService.Update(viewId, null);
+            return shareLinkService.Create(viewId);
         }
 
         /// <summary>

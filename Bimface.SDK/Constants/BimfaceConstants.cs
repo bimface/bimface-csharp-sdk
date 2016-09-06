@@ -30,7 +30,7 @@ namespace Bimface.SDK.Constants
         // 读写超时时间 单位秒(默认 0 ms , 不超时)
         public const int DEFAULT_READ_WRITE_TIMEOUT = 100000;
         // 回复超时时间 单位秒(默认30000 ms)
-        public const int DEFAULT_RESPONSE_TIMEOUT = 30000;
+        public const int DEFAULT_RESPONSE_TIMEOUT = 30000000;
         // 默认字符集编码
         public static readonly int UTF_8 = 65001;
         public static readonly string MEDIA_TYPE_JSON = "application/json; charset=utf-8";

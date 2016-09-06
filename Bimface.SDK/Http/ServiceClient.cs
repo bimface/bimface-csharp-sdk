@@ -191,8 +191,6 @@ namespace Bimface.SDK.Http
                     requestStream.Write(body, 0, body.Length);
                     requestStream.Close();
                 }
-                if (request.RequestUri.AbsoluteUri != "https://api.bimface.com/oauth2/token")
-                    RecordRequest(request, Encoding.Unicode.GetString(body));
                 var response = request.GetResponse() as HttpWebResponse;
                 if (response.StatusCode >= (HttpStatusCode) 300)
                     throw new BimfaceException(response.StatusDescription,
@@ -228,8 +226,6 @@ namespace Bimface.SDK.Http
                     content.Append(Encoding.Unicode.GetString(buffer));
                 }
                 requestStream.Close();
-                if (request.RequestUri.AbsoluteUri != "https://api.bimface.com/oauth2/token")
-                    RecordRequest(request, content.ToString());
                 var response = request.GetResponse() as HttpWebResponse;
                 if (response.StatusCode >= (HttpStatusCode) 300)
                     throw new BimfaceException(response.StatusDescription,
@@ -245,13 +241,7 @@ namespace Bimface.SDK.Http
         private void SetRequestConfig(HttpWebRequest request)
         {
             request.Timeout = httpConfig.ResponseTimeout;
-            //request.ReadWriteTimeout = httpConfig.ReadWriteTimeout;
-        }
-
-        [Conditional("DEBUG")]
-        private void RecordRequest(HttpWebRequest request, string body)
-        {
-            RequestRecord.Instance.Push(new KeyValuePair<HttpWebRequest, string>(request, body));
+            request.ReadWriteTimeout = httpConfig.ReadWriteTimeout;
         }
     }
 }

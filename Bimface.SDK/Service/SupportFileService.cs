@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
 using Bimface.SDK.Configuation;
 using Bimface.SDK.Http;
+using Bimface.SDK.Bean.Response;
 
 namespace Bimface.SDK.Service
 {
     /// <summary>
     ///     支持的文件格式
-    ///     @author bimface, 2016-06-01.
+    ///     @author bimface, 2016-09-01.
     /// </summary>
     public class SupportFileService : AbstractAccessTokenService
     {
         private readonly bool InstanceFieldsInitialized;
         private string SUPPORT_FILE_URL;
-        private IList<string> supportFile;
+        private SupportFileBean supportFileBean;
 
         public SupportFileService(ServiceClient serviceClient, Endpoint endpoint, AccessTokenService accessTokenService)
             : base(serviceClient, endpoint, accessTokenService)
@@ -24,27 +25,27 @@ namespace Bimface.SDK.Service
             }
         }
 
-        public virtual IList<string> SupportFile
+        public virtual SupportFileBean SupportFileBean
         {
             get
             {
                 // 在缓存中获取
-                if (supportFile != null && supportFile.Count > 0)
+                if (supportFileBean != null)
                 {
-                    return supportFile;
+                    return supportFileBean;
                 }
 
                 var headers = new HttpHeaders();
                 headers.AddOAuth2Header(AccessToken);
                 var response = ServiceClient.Get(SUPPORT_FILE_URL, headers);
-                supportFile = HttpUtils.Response<IList<string>>(response);
-                return supportFile;
+                supportFileBean = HttpUtils.Response<SupportFileBean>(response);
+                return supportFileBean;
             }
         }
 
         private void InitializeInstanceFields()
         {
-            SUPPORT_FILE_URL = string.Format("{0}/support", ApiHost);
+            SUPPORT_FILE_URL = string.Format("{0}/support", FileHost);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Bimface.SDK.Service
             AssertUtils.AssertStringNotNullOrEmpty(signature, "signature");
             AssertUtils.AssertStringNotNullOrEmpty(viewId, "viewId");
             AssertUtils.AssertStringNotNullOrEmpty(status, "status");
-            AssertUtils.AssertStringNotNullOrEmpty(status, "nonce");
+            AssertUtils.AssertStringNotNullOrEmpty(nonce, "nonce");
             // »Øµ÷Ç©Ãû MD5(appKey:appSecret:transferId:status:nonce)
             var sb =
                 (new StringBuilder(credential.AppKey)).Append(":")

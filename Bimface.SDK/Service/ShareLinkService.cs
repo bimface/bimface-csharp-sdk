@@ -14,6 +14,7 @@ namespace Bimface.SDK.Service
     {
         private readonly bool InstanceFieldsInitialized;
         private string CREATE_SHARE_URL;
+        private string CREATE_SHARE_URL_FOREVER;
         private string DELETE_SHARE_URL;
         private string GET_SHARE_URL;
         private string UPDATE_SHARE_URL;
@@ -31,6 +32,7 @@ namespace Bimface.SDK.Service
         private void InitializeInstanceFields()
         {
             CREATE_SHARE_URL = ApiHost + "/share?viewId={0}&activeHours={1}";
+            CREATE_SHARE_URL_FOREVER = ApiHost + "/share?viewId={0}";
             UPDATE_SHARE_URL = ApiHost + "/share?viewId={0}&activeHours={1}";
             GET_SHARE_URL = ApiHost + "/share?viewId={0}";
             DELETE_SHARE_URL = ApiHost + "/share?viewId={0}";
@@ -51,29 +53,14 @@ namespace Bimface.SDK.Service
             return HttpUtils.Response<ShareLinkBean>(response);
         }
 
-        public virtual ShareLinkBean Get(string viewId)
+        public virtual ShareLinkBean Create(string viewId)
         {
             // 参数校验
             AssertUtils.AssertStringNotNullOrEmpty(viewId, "viewId");
 
             var headers = new HttpHeaders();
             headers.AddOAuth2Header(AccessToken);
-            var response = ServiceClient.Get(string.Format(GET_SHARE_URL, viewId), headers);
-            return HttpUtils.Response<ShareLinkBean>(response);
-        }
-
-        public virtual ShareLinkBean Update(string viewId, int? activeHours)
-        {
-            // 参数校验
-            AssertUtils.AssertStringNotNullOrEmpty(viewId, "viewId");
-            if (activeHours != null && activeHours <= 0)
-            {
-                throw new ArgumentException("activeHours must not less than zero.");
-            }
-
-            var headers = new HttpHeaders();
-            headers.AddOAuth2Header(AccessToken);
-            var response = ServiceClient.Put(string.Format(UPDATE_SHARE_URL, viewId, activeHours), headers);
+            var response = ServiceClient.Post(string.Format(CREATE_SHARE_URL_FOREVER, viewId), "", headers);
             return HttpUtils.Response<ShareLinkBean>(response);
         }
 

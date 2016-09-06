@@ -89,60 +89,28 @@ namespace Bimface.SDK.Utils
             return false;
         }
 
-        /// <summary>
-        ///     检查文件名
-        /// </summary>
-        /// <param name="name"> 文件名 </param>
-        public static void CheckFileName(string name)
-        {
-            AssertStringNotNullOrEmpty(name, "file name must not be empty");
 
-            if (name.Length > 256)
+        public static void CheckUrl(string url) {
+            AssertStringNotNullOrEmpty(url, "url");
+
+            if (!url.StartsWith("http://") && !url.StartsWith("https://")) { 
+                throw new ArgumentException("Url must starts with http(s)://.");
+            }
+        }
+
+        public static void CheckFileLength(long maxLength, long length) {
+            if (length <= 0)
             {
-                throw new ArgumentException("file name too long, no more than 256 characters");
+                throw new ArgumentException("file length is illeagal:" + length);
             }
 
-            string[] @string = {"/", "\n", "*", "\\", "<", ">", "|", "\"", ":", "?"};
-
-            if (StringUtils.ContainsStringArray(name, @string))
+            if (length > maxLength)
             {
                 throw new ArgumentException(
-                    "file name contains illegal character, '/', '\n', '*', '\\', '<', '>', '|', '\"', ':', '?'");
+                        "file length is larger:" + length + "than supported length :" + maxLength);
             }
+        
         }
-
-        /// <summary>
-        ///     检查文件上传后缀
-        /// </summary>
-        /// <param name="allSupportedType"> 支持的所有文件后缀 </param>
-        /// <param name="suffix"> 文件后缀 </param>
-        public static void CheckFileSuffix(IList<string> allSupportedType, string suffix)
-        {
-            AssertStringNotNullOrEmpty(suffix, "suffix must not be empty");
-
-            if (!FileFormatsSupported(allSupportedType, suffix))
-            {
-                throw new ArgumentException("file type not supported (supported types:" +
-                                            StringUtils.Join(allSupportedType, ",") + ")");
-            }
-        }
-
-        /// <summary>
-        ///     文件格式匹配
-        /// </summary>
-        /// <param name="allSupportedType"> bimface支持的所有文件后缀 </param>
-        /// <param name="suffix"> 文件后缀 </param>
-        /// <returns> true：支持上传，false：不支持上传 </returns>
-        public static bool FileFormatsSupported(IList<string> allSupportedType, string suffix)
-        {
-            foreach (var s in allSupportedType)
-            {
-                if (s.Equals(suffix, StringComparison.CurrentCultureIgnoreCase))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        
     }
 }
