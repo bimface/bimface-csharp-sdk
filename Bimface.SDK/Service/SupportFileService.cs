@@ -25,7 +25,7 @@ namespace Bimface.SDK.Service
             }
         }
 
-        public virtual SupportFileBean SupportFileBean
+        public virtual SupportFileBean GetSupport
         {
             get
             {

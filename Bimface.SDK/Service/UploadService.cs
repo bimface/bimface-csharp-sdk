@@ -73,7 +73,7 @@ namespace Bimface.SDK.Service
                 AssertUtils.AssertParameterNotNull(fileUploadRequest.InputStream, "inputStream");
             }
             FileNameUtils.CheckFileName(fileUploadRequest.Name);
-            SupportFileBean supportFile = SupportFileService.SupportFileBean;
+            SupportFileBean supportFile = SupportFileService.GetSupport;
             FileNameUtils.CheckFileType(supportFile.Types, fileUploadRequest.Name);
         }
     }

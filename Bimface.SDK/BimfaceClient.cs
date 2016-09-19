@@ -122,9 +122,9 @@ namespace Bimface.SDK
         /// <exception cref="BimfaceException">
         ///     <seealso cref="BimfaceException" />
         /// </exception>
-        public virtual SupportFileBean SupportFile
+        public virtual SupportFileBean GetSupport
         {
-            get { return supportFileService.SupportFileBean; }
+            get { return supportFileService.GetSupport; }
         }
 
         public virtual Credential Credential
