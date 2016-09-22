@@ -30,7 +30,7 @@ namespace Bimface.SDK.Service
         private void InitializeInstanceFields()
         {
             TRANSFER_URL = ApiHost + "/transfer";
-            GET_TRANSFER_URL = ApiHost + "/transfer?viewId={0}";
+            GET_TRANSFER_URL = ApiHost + "/transfer?transferId={0}";
         }
 
         public virtual TransferBean Transfer(FileTransferRequest fileTransferRequest)
@@ -44,14 +44,14 @@ namespace Bimface.SDK.Service
             return HttpUtils.Response<TransferBean>(response);
         }
 
-        public virtual TransferBean GetTransfer(string viewId)
+        public virtual TransferBean GetTransfer(string transferId)
         {
             // 参数校验
-            AssertUtils.AssertStringNotNullOrEmpty(viewId, "viewId");
+            AssertUtils.AssertStringNotNullOrEmpty(transferId, "transferId");
 
             var headers = new HttpHeaders();
             headers.AddOAuth2Header(AccessToken);
-            var response = ServiceClient.Get(string.Format(GET_TRANSFER_URL, viewId), headers);
+            var response = ServiceClient.Get(string.Format(GET_TRANSFER_URL, transferId), headers);
             return HttpUtils.Response<TransferBean>(response);
         }
 

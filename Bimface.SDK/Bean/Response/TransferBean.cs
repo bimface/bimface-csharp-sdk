@@ -14,12 +14,12 @@ namespace Bimface.SDK.Bean.Response
         private string reason = string.Empty; // ×ª»»Ê§°ÜµÄÔ­ÒòÃèÊö
         private string status; // ×ª»»×´Ì¬
         private string[] thumbnail; // ËõÂÔÍ¼Â·¾¶
-        private string viewId; // ä¯ÀÀID
+        private string transferId; // ä¯ÀÀID
 
-        public virtual string ViewId
+        public virtual string TransferId
         {
-            get { return viewId; }
-            set { viewId = value; }
+            get { return transferId; }
+            set { transferId = value; }
         }
 
         public virtual string Name
@@ -67,7 +67,7 @@ namespace Bimface.SDK.Bean.Response
         {
             return
                 string.Format(
-                    "TransferBean [viewId={0}, name={1}, status={2}, thumbnail={3}, reason={4}, createTime={5}]", viewId,
+                    "TransferBean [transferId={0}, name={1}, status={2}, thumbnail={3}, reason={4}, createTime={5}]", transferId,
                     name, status, thumbnail == null ? string.Empty : string.Join("-", thumbnail), reason, createTime);
         }
     }

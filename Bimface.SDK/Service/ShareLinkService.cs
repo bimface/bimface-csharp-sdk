@@ -17,7 +17,6 @@ namespace Bimface.SDK.Service
         private string CREATE_SHARE_URL_FOREVER;
         private string DELETE_SHARE_URL;
         private string GET_SHARE_URL;
-        private string UPDATE_SHARE_URL;
 
         public ShareLinkService(ServiceClient serviceClient, Endpoint endpoint, AccessTokenService accessTokenService)
             : base(serviceClient, endpoint, accessTokenService)
@@ -31,17 +30,16 @@ namespace Bimface.SDK.Service
 
         private void InitializeInstanceFields()
         {
-            CREATE_SHARE_URL = ApiHost + "/share?viewId={0}&activeHours={1}";
-            CREATE_SHARE_URL_FOREVER = ApiHost + "/share?viewId={0}";
-            UPDATE_SHARE_URL = ApiHost + "/share?viewId={0}&activeHours={1}";
-            GET_SHARE_URL = ApiHost + "/share?viewId={0}";
-            DELETE_SHARE_URL = ApiHost + "/share?viewId={0}";
+            CREATE_SHARE_URL = ApiHost + "/share?transferId={0}&activeHours={1}";
+            CREATE_SHARE_URL_FOREVER = ApiHost + "/share?transferId={0}";
+            GET_SHARE_URL = ApiHost + "/share?transferId={0}";
+            DELETE_SHARE_URL = ApiHost + "/share?transferId={0}";
         }
 
-        public virtual ShareLinkBean Create(string viewId, int? activeHours)
+        public virtual ShareLinkBean Create(string transferId, int? activeHours)
         {
             // 参数校验
-            AssertUtils.AssertStringNotNullOrEmpty(viewId, "viewId");
+            AssertUtils.AssertStringNotNullOrEmpty(transferId, "transferId");
             if (activeHours != null && activeHours <= 0)
             {
                 throw new ArgumentException("activeHours must not less than zero.");
@@ -49,29 +47,29 @@ namespace Bimface.SDK.Service
 
             var headers = new HttpHeaders();
             headers.AddOAuth2Header(AccessToken);
-            var response = ServiceClient.Post(string.Format(CREATE_SHARE_URL, viewId, activeHours), "", headers);
+            var response = ServiceClient.Post(string.Format(CREATE_SHARE_URL, transferId, activeHours), "", headers);
             return HttpUtils.Response<ShareLinkBean>(response);
         }
 
-        public virtual ShareLinkBean Create(string viewId)
+        public virtual ShareLinkBean Create(string transferId)
         {
             // 参数校验
-            AssertUtils.AssertStringNotNullOrEmpty(viewId, "viewId");
+            AssertUtils.AssertStringNotNullOrEmpty(transferId, "transferId");
 
             var headers = new HttpHeaders();
             headers.AddOAuth2Header(AccessToken);
-            var response = ServiceClient.Post(string.Format(CREATE_SHARE_URL_FOREVER, viewId), "", headers);
+            var response = ServiceClient.Post(string.Format(CREATE_SHARE_URL_FOREVER, transferId), "", headers);
             return HttpUtils.Response<ShareLinkBean>(response);
         }
 
-        public virtual string Delete(string viewId)
+        public virtual string Delete(string transferId)
         {
             // 参数校验
-            AssertUtils.AssertStringNotNullOrEmpty(viewId, "viewId");
+            AssertUtils.AssertStringNotNullOrEmpty(transferId, "transferId");
 
             var headers = new HttpHeaders();
             headers.AddOAuth2Header(AccessToken);
-            var response = ServiceClient.Delete(string.Format(DELETE_SHARE_URL, viewId), headers);
+            var response = ServiceClient.Delete(string.Format(DELETE_SHARE_URL, transferId), headers);
             return HttpUtils.Response<string>(response);
         }
     }

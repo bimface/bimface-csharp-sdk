@@ -278,35 +278,35 @@ namespace Bimface.SDK
         /// <summary>
         ///     获取文件转换状态
         /// </summary>
-        /// <param name="viewId"> 预览ID </param>
+        /// <param name="transferId"> 转换ID </param>
         /// <returns>
         ///     <seealso cref="TransferBean" />
         /// </returns>
         /// <exception cref="BimfaceException">
         ///     <seealso cref="BimfaceException" />
         /// </exception>
-        public virtual TransferBean GetTransfer(string viewId)
+        public virtual TransferBean GetTransfer(string transferId)
         {
-            return transferService.GetTransfer(viewId);
+            return transferService.GetTransfer(transferId);
         }
 
         /// <summary>
         ///     获取viewToken, 用于模型预览的凭证
         /// </summary>
-        /// <param name="viewId"> 预览ID </param>
+        /// <param name="transferId"> 转换ID </param>
         /// <returns> viewToken </returns>
         /// <exception cref="BimfaceException">
         ///     <seealso cref="BimfaceException" />
         /// </exception>
-        public virtual string GetViewToken(string viewId)
+        public virtual string GetViewToken(string transferId)
         {
-            return viewTokenService.GrantViewToken(viewId);
+            return viewTokenService.GrantViewToken(transferId);
         }
 
         /// <summary>
         ///     创建分享链接
         /// </summary>
-        /// <param name="viewId"> 预览ID </param>
+        /// <param name="transferId"> 转换ID </param>
         /// <param name="activeHours"> 从当前算起，分享链接的有效时间，单位：小时; 如果为空，表示该分享链接永久有效 </param>
         /// <returns>
         ///     <seealso cref="ShareLinkBean" />
@@ -314,51 +314,51 @@ namespace Bimface.SDK
         /// <exception cref="BimfaceException">
         ///     <seealso cref="BimfaceException" />
         /// </exception>
-        public virtual ShareLinkBean CreateShareLink(string viewId, int? activeHours)
+        public virtual ShareLinkBean CreateShareLink(string transferId, int? activeHours)
         {
-            return shareLinkService.Create(viewId, activeHours);
+            return shareLinkService.Create(transferId, activeHours);
         }
 
         /// <summary>
         ///     创建分享链接,永久有效
         /// </summary>
-        /// <param name="viewId"> 预览ID </param>
+        /// <param name="transferId"> 转换ID </param>
         /// <returns>
         ///     <seealso cref="ShareLinkBean" />
         /// </returns>
         /// <exception cref="BimfaceException">
         ///     <seealso cref="BimfaceException" />
         /// </exception>
-        public virtual ShareLinkBean CreateShareLink(string viewId)
+        public virtual ShareLinkBean CreateShareLink(string transferId)
         {
-            return shareLinkService.Create(viewId);
+            return shareLinkService.Create(transferId);
         }
 
         /// <summary>
         ///     删除分享链接
         /// </summary>
-        /// <param name="viewId"> 预览ID </param>
+        /// <param name="transferId"> 转换ID </param>
         /// <exception cref="BimfaceException">
         ///     <seealso cref="BimfaceException" />
         /// </exception>
-        public virtual void DeleteShareLink(string viewId)
+        public virtual void DeleteShareLink(string transferId)
         {
-            shareLinkService.Delete(viewId);
+            shareLinkService.Delete(transferId);
         }
 
         /// <summary>
         ///     验证签名, 接收转换回调时使用
         /// </summary>
         /// <param name="signature"> 签名字符 </param>
-        /// <param name="viewId"> 预览ID </param>
+        /// <param name="transferId"> 转换ID </param>
         /// <param name="status"> 转换状态(success || failed) </param>
         /// <returns> true: 验证成功, false: 校验失败 </returns>
         /// <exception cref="BimfaceException">
         ///     <seealso cref="BimfaceException" />
         /// </exception>
-        public virtual bool ValidateSignature(string signature, string viewId, string status,string nonce)
+        public virtual bool ValidateSignature(string signature, string transferId, string status, string nonce)
         {
-            return signatureService.Validate(signature, viewId, status,nonce);
+            return signatureService.Validate(signature, transferId, status, nonce);
         }
     }
 }

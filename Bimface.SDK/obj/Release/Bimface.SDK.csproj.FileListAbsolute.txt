@@ -6,7 +6,6 @@ D:\Git\sdk\Bimface.CSharp.SDK\Bimface.SDK\obj\Release\Bimface.SDK.Properties.Res
 D:\Git\sdk\Bimface.CSharp.SDK\Bimface.SDK\obj\Release\Bimface.SDK.csproj.GenerateResource.Cache
 D:\Git\sdk\Bimface.CSharp.SDK\Bimface.SDK\obj\Release\Bimface.SDK.dll
 D:\Git\sdk\Bimface.CSharp.SDK\Bimface.SDK\obj\Release\Bimface.SDK.pdb
-F:\newBimface\sdk\Bimface.CSharp.SDK\Bimface.SDK\obj\Release\Bimface.SDK.csprojResolveAssemblyReference.cache
 F:\newBimface\sdk\Bimface.CSharp.SDK\Bimface.SDK\obj\Release\Bimface.SDK.Properties.Resources.resources
 F:\newBimface\sdk\Bimface.CSharp.SDK\Bimface.SDK\obj\Release\Bimface.SDK.csproj.GenerateResource.Cache
 F:\newBimface\sdk\Bimface.CSharp.SDK\Bimface.SDK\obj\Release\Bimface.SDK.dll

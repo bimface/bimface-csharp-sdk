@@ -22,13 +22,13 @@ namespace Bimface.SDK.Service
         ///     校验签名方法,针对于回调函数验证是否为bimface发起
         /// </summary>
         /// <param name="signature"> 回调时带的签名 </param>
-        /// <param name="viewId"> 转换时返回的预览ID </param>
+        /// <param name="transferId"> 转换时返回的预览ID </param>
         /// <param name="status"> 转换状态(success || failed) </param>
         /// <returns> true: 验证成功, false: 校验失败 </returns>
-        public virtual bool Validate(string signature, string viewId, string status,String nonce)
+        public virtual bool Validate(string signature, string transferId, string status, String nonce)
         {
             AssertUtils.AssertStringNotNullOrEmpty(signature, "signature");
-            AssertUtils.AssertStringNotNullOrEmpty(viewId, "viewId");
+            AssertUtils.AssertStringNotNullOrEmpty(transferId, "transferId");
             AssertUtils.AssertStringNotNullOrEmpty(status, "status");
             AssertUtils.AssertStringNotNullOrEmpty(nonce, "nonce");
             // 回调签名 MD5(appKey:appSecret:transferId:status:nonce)
@@ -36,7 +36,7 @@ namespace Bimface.SDK.Service
                 (new StringBuilder(credential.AppKey)).Append(":")
                     .Append(credential.AppSecret)
                     .Append(":")
-                    .Append(viewId)
+                    .Append(transferId)
                     .Append(":")
                     .Append(status)
                     .Append(":")

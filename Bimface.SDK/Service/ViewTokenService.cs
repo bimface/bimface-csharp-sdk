@@ -25,15 +25,15 @@ namespace Bimface.SDK.Service
 
         private void InitializeInstanceFields()
         {
-            VIEW_TOKEN_URL = ApiHost + "/view/token?viewId={0}";
+            VIEW_TOKEN_URL = ApiHost + "/view/token?transferId={0}";
         }
 
-        public virtual string GrantViewToken(string viewId)
+        public virtual string GrantViewToken(string transferId)
         {
-            AssertUtils.AssertStringNotNullOrEmpty(viewId, "viewId");
+            AssertUtils.AssertStringNotNullOrEmpty(transferId, "transferId");
             var headers = new HttpHeaders();
             headers.AddOAuth2Header(AccessToken);
-            var response = ServiceClient.Get(string.Format(VIEW_TOKEN_URL, viewId), headers);
+            var response = ServiceClient.Get(string.Format(VIEW_TOKEN_URL, transferId), headers);
             return HttpUtils.Response<string>(response);
         }
     }
